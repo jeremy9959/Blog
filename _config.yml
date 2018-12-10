@@ -16,7 +16,7 @@
 title: Jeremy Teitelbaum
 email: jeremy.teitelbaum@uconn.edu
 description: >- # this means to ignore newlines until "baseurl:"
-	     Notes on mathematics, bioinformatics, and other things.
+Notes on mathematics, bioinformatics, and other things.
 
 
 baseurl: "" # the subpath of your site, e.g. /blog
