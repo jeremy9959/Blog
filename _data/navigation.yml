@@ -1,3 +1,5 @@
 main:
- - title: "Contact"
-   url: /contact/	
+- title: "Posts"
+  url: /recent/
+- title: "Contact"
+  url: /contact/
