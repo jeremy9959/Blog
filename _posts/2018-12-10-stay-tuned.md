@@ -5,7 +5,7 @@ date: 2018-12-10 07:21:00 -0500
 categories: update
 ---
 
-```python
+{% highlight python %}
 def hello_world():
     print("Hello World")
-```
+{% endhighlight %}
