@@ -1,8 +1,9 @@
 ---
 type: posts
 layout: single
+excerpt: Hello world in python
 ---
-Hello World function in Python
+
 
 ```python
 def hello_world():
