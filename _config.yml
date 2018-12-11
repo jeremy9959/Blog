@@ -106,7 +106,7 @@ author:
   name             : "Jeremy Teitelbaum"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : Professor of Mathematics
-  location         : University of Connecticut
+  location         : <a href ="http://www.uconn.edu"> University of Connecticut </a>
   email            : jeremy.teitelbaum@uconn.edu
   links:
     - label: "Email"
