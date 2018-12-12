@@ -112,9 +112,11 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       #url: "mailto:jeremy.teitelbaum@uconn.edu"
-    - label: "Website"
+    - label: "UConn Website"
       icon: "fas fa-fw fa-link"
       url: "https://teitelbaum.math.uconn.edu"
+    - label: "Talks"
+      url: "https://github.uconn.edu/pages/jet08013/Talks"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/jeremy9959"
@@ -124,12 +126,16 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/jeremy9959"
+    - label: "UConn GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.uconn.edu/jet08013"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/jeremytteitelbaum"
     - label: "YouTube"
       icon: "fab fa-fw fa-youtube"
       url: "https://youtube.com/user/jeremy9959"
+
 # Site Footer
 footer:
   links:

@@ -1,3 +1,5 @@
 main:
+- title: "Profile"
+  url: /about/
 - title: "Contact"
   url: /contact/
