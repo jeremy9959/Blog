@@ -25,7 +25,7 @@ is left alone.
 
 The file containing the map of accessible regions is actually quite short. The command to build it (joining over 10000 N's at most) is:
 
-```bash
+```
 $ cnvkit.py access -s 10000 -o access_file.bed reference.fasta
 ```
 
