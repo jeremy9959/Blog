@@ -1,5 +1,6 @@
 ---
-published: false
+published: true
+tags: music
 ---
 ## A playlist for a rainy Sunday
 

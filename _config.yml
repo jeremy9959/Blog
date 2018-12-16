@@ -203,6 +203,7 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
+mathjax: true
 
 # Markdown Processing
 kramdown:
@@ -300,4 +301,4 @@ defaults:
       share: false
       related: true
 
-
+github: [metadata]
