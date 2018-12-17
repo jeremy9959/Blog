@@ -1,10 +1,9 @@
---- 
+---
 layout: single
 tag: bioinformatics
 excerpt: 'Comparison of GC bias correction in ginkgo and cnvkit'
 title: 'GC Bias correction in ginkgo and cnvkit'
 ---
-
 ## Correcting for GC bias
 
 
@@ -13,6 +12,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 from statsmodels.nonparametric.smoothers_lowess import lowess
+sns.set_style('darkgrid')
 ```
 
 There is a known source of bias in sequencing coming from the relative proportion of GC bases in the sequence in a particular bin.  Both ginkgo and cnvkit correct for this bias.  We compare their approaches. 
@@ -77,7 +77,7 @@ The statsmodels python package implements a version of this. The frac parameter 
 def low(x,y,f=.5):
     jlow = lowess(np.log(y),x,frac=f)
     jz = np.interp(x,jlow[:,0],jlow[:,1])
-    return np.exp(np.log(y)-jz)
+    return np.log(y)-jz
 ```
 
 
@@ -85,18 +85,18 @@ def low(x,y,f=.5):
 fig, (j,j1) = plt.subplots(2,1)
 B1=lowess(np.log(normal[cells].iloc[:,10]),GC['GC'],frac=0.05)
 B2=lowess(np.log(normal[cells].iloc[:,10]),GC['GC'],frac=0.5)
-sns.scatterplot(GC['GC'],normal[cells].iloc[:,10],ax=j)
-sns.lineplot(B1[:,0],np.exp(B1[:,1]),color='red',label='smoothing parameter f=.05',ax=j)
-sns.lineplot(B2[:,0],np.exp(B2[:,1]),color='green',label='smoothing parameter f=.5',ax=j)
+sns.scatterplot(GC['GC'],np.log(normal[cells].iloc[:,10]),ax=j)
+sns.lineplot(B1[:,0],B1[:,1],color='red',label='smoothing parameter f=.05',ax=j)
+sns.lineplot(B2[:,0],B2[:,1],color='green',label='smoothing parameter f=.5',ax=j)
 h,l=j.get_legend_handles_labels()
 j.set_ylabel('SCW-118\nNormalized Counts')
 j.set_xlabel('GC proportion')
 j.set_title('LOWESS Smoothing for Fragment Counts')
 j.legend(h,l)
-j.set_ylim([0,5])
+j.set_ylim([-2.5,2.5])
 N = low(GC['GC'],normal[cells].iloc[:,10],f=0.5)
 sns.scatterplot(GC['GC'],N,ax=j1)
-r=j1.set_ylim([0,5])
+r=j1.set_ylim([-2.5,2.5])
 j1.set_ylabel('SCW-118\nBias Corrected Counts')
 j1.set_xlabel('GC Proportion')
 j1.get_figure().set_size_inches(12,12)
@@ -130,7 +130,7 @@ Y = F.iloc[order,:].copy()
 Z=Y.iloc[:,1].rolling(251,min_periods=1).median()
 Y.loc[:,'med']=Z
 j=sns.scatterplot(Y['GC'],Y.iloc[:,1])
-j.set_ylim([-5,5])
+j.set_ylim([-2.5,2.5])
 j=sns.lineplot(Y['GC'],Y['med'],ax=j,color='red',label='rolling median')
 j=sns.lineplot(B[:,0],B[:,1],color='green',ax=j,label='LOWESS')
 j.set_ylabel('SCW-118\nLog2 of Normalized Counts')
@@ -138,7 +138,7 @@ j.set_xlabel('GC Proportion')
 j.set_title('Comparison of rolling median with LOWESS')
 h,l=j.get_legend_handles_labels()
 j.legend(h,l)
-j.get_figure().set_size_inches(10,10)
+j.get_figure().set_size_inches(12,5)
 ```
 
 
@@ -152,7 +152,7 @@ j.set_title('Log2 Counts corrected by rolling median')
 j.set_ylabel('SCW-118\n Corrected normalized log2 counts')
 j.set_xlabel('GC Proportion')
 j.set_ylim([-2.5,2.5])
-j.get_figure().set_size_inches(10,10)
+j.get_figure().set_size_inches(12,5)
 ```
 
 
