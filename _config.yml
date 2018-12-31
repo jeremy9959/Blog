@@ -107,15 +107,13 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : Professor of Mathematics
   location         : University of Connecticut
-  email            : jeremy.teitelbaum@uconn.edu
+  email            : 
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      #url: "mailto:jeremy.teitelbaum@uconn.edu"
     - label: "UConn Website"
       icon: "fas fa-fw fa-link"
       url: "https://teitelbaum.math.uconn.edu"
     - label: "Talks"
+      icon: "fas fa-fw fa-link"
       url: "https://github.uconn.edu/pages/jet08013/Talks"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
@@ -303,5 +301,4 @@ defaults:
 
 
 
-github: metadata
 
