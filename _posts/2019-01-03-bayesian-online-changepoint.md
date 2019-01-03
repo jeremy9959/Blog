@@ -65,8 +65,12 @@ $$P(r_{t+1}=n+1|r_{t}=n) = (1-1/\lambda)$$
 
 For the sake of simplicity, let's initialize the data so that r_{0}(0)=1 and r_{0}(x)=0 if $x>1$.  This means that our process starts off at $t=0$ with run length zero and the hyperparameters $\chi_{1}(0)$ set to their 'prior' values.
 
-Imagine now that the algorithm has been running up to time $t-1$.  This means that we have
-computed $r_{t-1}(n)$, the probability of run lengths $n=0,\ldots, t-1$ at time $t$.  For each such run length, we have also computed hyperparameters of our distribution $\chi_{t}(n)$ for $n=0,\ldots, t$. In other words, we know the total probability distribution $P(r_{t-1},x_1,\ldots, x_{t-1})$.
+Imagine now that the algorithm has been running up to time $t-1$.
+This means that we have computed $r_{t-1}(n)$, the probability of run
+lengths $n=0,\ldots, t-1$ at time $t$.  For each such run length, we
+have also computed hyperparameters of our distribution $\chi_{t}(n)$
+for $n=0,\ldots, t$. In other words, we know the total probability
+distribution $P(r_{t-1},x_1,\ldots, x_{t-1})$.
 
 Now a new piece of information arrives: $x_t$.  How does this influence our understanding of the situation?
 
@@ -74,10 +78,15 @@ Referring back to equation 3 of the paper, we see that we have a recursive way t
 
 ![recursion](/assets/images/obcd-2.png)
 
-In this sum, first we have that $P(r_t|r_{t-1})=0$ unless either $r_t=r_{t-1}+1$ (in which case it is $(1-1/\lambda)$ or $r_t=0$ (in which case it is $1/\lambda$). So for $n>0$ we have
-$$
-P(r_t=n,x_1,\ldots,x_t)=(1-1/\lambda)P(x_t|r_{t-1}=n-1,x_{t-1},\ldots, x_{t-n+1})P(r_{t-1}=n-1,x_1,\ldots,x_{t-1}).
-$$
+In this sum, first we have that $P(r_t|r_{t-1})=0$ unless either $r_t=r_{t-1}+1$ (in which case it is $(1-1/\lambda)$)
+or $r_t=0$ (in which case it is $1/\lambda$). So for $n>0$ we have that
+
+$P(r_t=n, x_1, \ldots, x_t)$
+is the product of three terms:
+
+- $(1-1/\lambda)$
+- $P(x_{t} \vbar r_{t-1}=n-1, x_{t-1}, \ldots, x_{t-n+1})$
+- $P(r_{t-1}=n-1,x_1,\ldots,x_{t-1}).$
 
 
 The rightmost term is known by recursion.  The middle term is computed from the probability distribution for $x$ using the hyperparameters $\chi_{t}^{n-1}$.
@@ -85,7 +94,7 @@ The rightmost term is known by recursion.  The middle term is computed from the 
 On the other hand,
 
 $$
-P(r_t=0, x1, \ldots, x_t) = \sum_{r_{t-1}=j} \lambda P(x_t|r_{t-1}=j,x_{t-1}, x_{t-j+1})P(r_{t-1}=j,x_1,\ldots, x_t)
+P(r_t=0, x1, \ldots, x_t) = \sum_{r_{t-1}=j} \lambda P(x_t|r_{t-1}=j,x_{1:t-1})P(r_{t-1}=j,x_{1:t-1})
 $$
 
 Next, the algorithm computes the distribution $r_{t}(n)=P(r_{t}=n,x_1,\ldots, x_t)/P(x_1,\ldots,x_t)$
@@ -109,6 +118,10 @@ than the posterior distribution on $\lambda$ after  seeing $x$ has parameters $k
 The predictive distribution on $x$ becomes negative binomial with parameters $N+x$ and $(1+\theta)/(1+2\theta)$.  
 
 A very nice implementation of this algorithm is available [here](https://github.com/hildensia/bayesian_changepoint_detection), where there is a [jupyter notebook](https://github.com/hildensia/bayesian_changepoint_detection/blob/master/Example%20Code.ipynb) that works out an example of this algorithm and also an "offline" algorithm that we don't discuss.  [Here is the relevant routine for the offline algorithm](https://github.com/hildensia/bayesian_changepoint_detection/blob/master/bayesian_changepoint_detection/online_changepoint_detection.py).
+
+In the implementation, the matrix ```R``` is such that ```R[m,n]``` is the probability at time ```n```
+that the run length is ```m```. The array ```maxes``` is the array of *most likely run length* at each time.
+
 
 The implementation here uses a 'T'-distribution as the prior, which is appropriate for a time series that is normally distributed within intervals. 
 
