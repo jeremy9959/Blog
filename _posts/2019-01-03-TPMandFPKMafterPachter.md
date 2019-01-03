@@ -5,8 +5,6 @@ title: "FPKM and TPM Units for RNA Seq after Pachter"
 excerpt: Pachter explains units of expression
 tags: rna-seq bioinformatics
 ---
-# FPKM and TPM units for RNA seq
-
 See [Pachter, L. Models for transcript quantification from RNA-seq](https://arxiv.org/pdf/1104.3889.pdf).
 
 ## Count-based models
