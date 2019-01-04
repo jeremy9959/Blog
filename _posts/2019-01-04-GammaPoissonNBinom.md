@@ -39,7 +39,7 @@ p = plt.title('Gamma distributions of mean 10\n and given variance',fontsize=16)
 ### Gamma-Poisson mixtures
 
 If $(k,\theta)$ are the parameters to the gamma function (in python, ```gamma(k,scale=theta)``` then the mixture distribution obtained by choosing the poisson rate from this gamma and then choosing a poisson yields a negative binomial
-with parameters $(N,p)=(k,1/(1+theta)$ (in python, ```nbinom(k,1/(1+theta))```.
+with parameters $(N,p)=(k,1/(1+\theta)$ (in python, ```nbinom(k,1/(1+theta))```.
 
 To verify this, we choose random variables in this way and compare with the nbinom pmf in these graphs.
 
