@@ -123,7 +123,12 @@ In the implementation, the matrix ```R``` is such that ```R[m,n]``` is the proba
 that the run length is ```m```. The array ```maxes``` is the array of *most likely run length* at each time.
 
 
-The implementation here uses a 'T'-distribution as the prior, which is appropriate for a time series that is normally distributed within intervals. 
+The implementation here uses a 'T'-distribution as the prior, which is appropriate for a time series that is normally distributed within intervals. More specifically, it uses a normal distribution with normal-inverse gamma priors on $\mu$ and $\sigma^2$.  The updating formulae
+are available in the [wikipedia table for conjugate priors.](https://en.wikipedia.org/wiki/Conjugate_prior).  The relevant
+row in the table is here:
+
+![normal-inverse-gamma](/assets/images/wikipedia_normal_inverse.png)
+
 
 The following code for a "Poisson-Gamma" distribution can be used instead for count data.
 
