@@ -3,6 +3,7 @@ permalink: /test/
 title: Shell History
 layout: single
 ---
+```bash
 ls
 cd GitHub/
 ls
@@ -26,3 +27,4 @@ ls
 cd
 vi .bashrc
 exit
+```
