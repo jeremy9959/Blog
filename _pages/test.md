@@ -26,5 +26,9 @@ cd
 ls
 cd
 vi .bashrc
+for x in *.txt
+do
+	echo $x
+done
 exit
 ```
