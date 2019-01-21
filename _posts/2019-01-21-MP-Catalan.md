@@ -60,4 +60,16 @@ print('4th moment is {}'.format(definite_integral(f4,x,gamma2,gamma1)))
     4th moment is 5.624999941242612
 
 
+A clever combinatorial argument gives a formula for these components--sort of "partial Catalan numbers".
+The number of trees on $k$ vertices with $r$ even vertices $(1\le r\le k-1)$ is:
+
+$$
+N(k,r) = \frac{1}{r}\binom{k-1}{r-1}\binom{k-2}{r-1}
+$$
+
+A computation with $k=5$ and $r=1,2,3$ gives the answers above. For example
+$$
+N(5,3) = \frac{1}{3}\binom{4}{2}\binom{3}{2} = \frac{(1)(3)(6)}{3}=6.
+$$
+
 
