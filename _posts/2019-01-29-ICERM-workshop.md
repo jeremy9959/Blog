@@ -39,3 +39,13 @@ See the many papers of [Kevin Carlberg](https://www.sandia.gov/~ktcarlb/).
 ### Le Song's talk on ODE methods for sequential Bayesian analysis
 
 See [Le Song](https://www.cc.gatech.edu/~lsong/index.html). 
+
+### Gregory Valiant's talk on what can be learned.
+
+See [Gregory Valiant](https://theory.stanford.edu/~valiant/), [Learning Populations of Parameters](https://arxiv.org/abs/1709.02707).
+
+Valiant discusses how empirical probabilities can be unreliable indicators of the true distribution, and what you can do about this.
+
+He also discussed [Spectrum Estimation from Samples](https://arxiv.org/abs/1602.00061).  This is about the eigenvalues of the covariance
+matrix of a distribution.
+
