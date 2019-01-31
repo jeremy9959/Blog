@@ -49,3 +49,6 @@ Valiant discusses how empirical probabilities can be unreliable indicators of th
 He also discussed [Spectrum Estimation from Samples](https://arxiv.org/abs/1602.00061).  This is about the eigenvalues of the covariance
 matrix of a distribution.
 
+See also Karoui 2008, Ledoit/Wolf 2015 -- 'Inverting Marcenko-Pastur law via discretized optimization.'
+
+
