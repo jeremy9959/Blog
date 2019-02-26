@@ -17,7 +17,7 @@ $X_t$ at a finite, but arbitrary set of times, to be invariant under shifts in t
 Notice that a time series that is zero when $n<0$ and nonzero when $n\ge 0$ isn't strictly stationary. 
 
 The time series is *wide-sense stationary* if the function $m(t)=E(X_t)$ is time-invariant, the
-second moments $E(|X_t|^2)$ are finite for all $t$, and the correlation between $X_t$ and $X_t'$ depends
+second moments $E(|X_t|^2)$ are finite for all $t$, and the correlation between $X_t$ and $X_{t'}$ depends
 only on the time interval between $t$ and $t'$.
 
 A wide-sense stationary process  is "mean-ergodic" if the random variable 
