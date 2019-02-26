@@ -39,10 +39,12 @@ The figure below shows the autocorrelation for two simulated samples, one where 
 ãnd the reads also give 10-fold coverage; and one where the coverage is 1-fold in each case.  Note that the graphs
 show the kink around the read length and then are constant until the amplicon length.
 
-|---|---|
+|Simulation | Figure 2a from Zhang, et. al.|
+|:---:|:---:|
 |![autocorrelation plot](/assets/images/auto_corr.png) | ![zhang_image](/assets/images/zhang_1a.png)|
 
-The two polots use different normalizations for the autocorrelation, but they show the same qualitative properties.
+
+The two plots use different normalizations for the autocorrelation, but they show the same qualitative properties.
 
 
 Here is the code for this.
