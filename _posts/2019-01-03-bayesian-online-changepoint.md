@@ -63,7 +63,7 @@ $$P(r_{t+1}=0|r_{t}=n)=1/\lambda$$
 $$P(r_{t+1}=n+1|r_{t}=n) = (1-1/\lambda)$$
 
 
-For the sake of simplicity, let's initialize the data so that r_{0}(0)=1 and r_{0}(x)=0 if $x>1$.  This means that our process starts off at $t=0$ with run length zero and the hyperparameters $\chi_{1}(0)$ set to their 'prior' values.
+For the sake of simplicity, let's initialize the data so that $r_{0}(0)=1$ and $r_{0}(x)=0$ if $x>1$.  This means that our process starts off at $t=0$ with run length zero and the hyperparameters $\chi_{1}(0)$ set to their 'prior' values.
 
 Imagine now that the algorithm has been running up to time $t-1$.
 This means that we have computed $r_{t-1}(n)$, the probability of run
