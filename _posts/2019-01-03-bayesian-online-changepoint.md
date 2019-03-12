@@ -85,7 +85,7 @@ $P(r_t=n, x_1, \ldots, x_t)$
 is the product of three terms:
 
 - $(1-1/\lambda)$
-- $P(x_{t} \vbar r_{t-1}=n-1, x_{t-1}, \ldots, x_{t-n+1})$
+- $P(x_{t} | r_{t-1}=n-1, x_{t-1}, \ldots, x_{t-n+1})$
 - $P(r_{t-1}=n-1,x_1,\ldots,x_{t-1}).$
 
 
