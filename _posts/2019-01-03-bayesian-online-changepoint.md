@@ -94,7 +94,7 @@ The rightmost term is known by recursion.  The middle term is computed from the 
 On the other hand,
 
 $$
-P(r_t=0, x1, \ldots, x_t) = \sum_{r_{t-1}=j} \lambda P(x_t|r_{t-1}=j,x_{1:t-1})P(r_{t-1}=j,x_{1:t-1})
+P(r_t=0, x_1, \ldots, x_t) = \sum_{r_{t-1}=j} \lambda P(x_t|r_{t-1}=j,x_{1:t-1})P(r_{t-1}=j,x_{1:t-1})
 $$
 
 Next, the algorithm computes the distribution $r_{t}(n)=P(r_{t}=n,x_1,\ldots, x_t)/P(x_1,\ldots,x_t)$
