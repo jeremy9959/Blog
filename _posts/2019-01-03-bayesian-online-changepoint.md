@@ -63,7 +63,7 @@ $$P(r_{t+1}=0|r_{t}=n)=1/\lambda$$
 $$P(r_{t+1}=n+1|r_{t}=n) = (1-1/\lambda)$$
 
 
-For the sake of simplicity, let's initialize the data so that r_{0}(0)=1 and r_{0}(x)=0 if $x>1$.  This means that our process starts off at $t=0$ with run length zero and the hyperparameters $\chi_{1}(0)$ set to their 'prior' values.
+For the sake of simplicity, let's initialize the data so that $r_{0}(0)=1$ and $r_{0}(x)=0$ if $x>1$.  This means that our process starts off at $t=0$ with run length zero and the hyperparameters $\chi_{1}(0)$ set to their 'prior' values.
 
 Imagine now that the algorithm has been running up to time $t-1$.
 This means that we have computed $r_{t-1}(n)$, the probability of run
@@ -85,7 +85,7 @@ $P(r_t=n, x_1, \ldots, x_t)$
 is the product of three terms:
 
 - $(1-1/\lambda)$
-- $P(x_{t} \vbar r_{t-1}=n-1, x_{t-1}, \ldots, x_{t-n+1})$
+- $P(x_{t} \| r_{t-1}=n-1, x_{t-1}, \ldots, x_{t-n+1})$
 - $P(r_{t-1}=n-1,x_1,\ldots,x_{t-1}).$
 
 
@@ -94,7 +94,7 @@ The rightmost term is known by recursion.  The middle term is computed from the 
 On the other hand,
 
 $$
-P(r_t=0, x1, \ldots, x_t) = \sum_{r_{t-1}=j} \lambda P(x_t|r_{t-1}=j,x_{1:t-1})P(r_{t-1}=j,x_{1:t-1})
+P(r_t=0, x_1, \ldots, x_t) = \sum_{r_{t-1}=j} \lambda P(x_t|r_{t-1}=j,x_{1:t-1})P(r_{t-1}=j,x_{1:t-1})
 $$
 
 Next, the algorithm computes the distribution $r_{t}(n)=P(r_{t}=n,x_1,\ldots, x_t)/P(x_1,\ldots,x_t)$
