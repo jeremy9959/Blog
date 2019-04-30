@@ -15,6 +15,7 @@ gem "github-pages", group: :jekyll_plugins
 gem 'minimal-mistakes-jekyll'
 gem 'jekyll-include-cache'
 gem 'jekyll-remote-theme'
+gem 'jekyll-archives'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
