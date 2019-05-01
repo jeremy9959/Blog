@@ -75,19 +75,49 @@
 # P(\{(l_i,k_i)\}_{i=1}^{n}|\psi)=\prod_{i=1}^{n}P((l_i,k_i)|\psi).
 # $$
 #
-# Using this one can, for example, compute the maximum likelihood estimate of $\psi$. 
+# Using this one can, for example, compute the maximum likelihood estimate of $\psi$ by applying the Expectation Maximization algorithm.
 #
+
+# %% [markdown]
+# ## The EM algorithm
+#
+# The EM algorithm proceeds iteratively.  First, we assume that we have an initial guess for $\psi$ and treat $\psi$ as a fixed parameter.  Given $\psi$ and the data, we find the expected genotype.  We write $P_{\psi}$ to remind
+# us that we are treating $\psi$ as fixed for now.  Using Bayes Rule we have:
+#
+# $$
+# P_{\psi}(g|d) = \frac{P_{\psi}(d|g)P_{\psi}(g)}{\sum_{g=0}^{2} P_{\psi}(d|g)P_{\psi}(g)}
+# $$
+#
+# Therefore, for a given individual dataset, the expected genotype is
+#
+# $$
+# E(g|d)=\sum_{g=0}^{2}gP_{\psi}(g|d)=\frac{\sum_{g=0}^{2} gP_{\psi}(d|g)P_{\psi}(g)}{\sum_{g=0}^{2} P_{\psi}(d|g)P_{\psi}(g)}
+# $$
+#
+# and the expected genotype for the entire sample is
+#
+# $$
+# E=\frac{1}{n}\sum_{i=1}^{n} E(g|d_i).
+# $$
+#
+# For the maximization step of the EM algorithm, we need to take the maximum likelihood estimate of $\psi$ based on this $E$.  But that's easy, because if the mean genotype is $g$, then the mean number of reference alleles is $g$ and so the reference allele frequency is $g/2$.
+#
+#
+#
+#
+
+# %% [markdown]
 # The following functions give a crude implementation of the EM algorithm in the paper.
 #
 # - N is the depth (assumed the same for all samples)
-# - r is the number of reference alleles
+# - r is the number of reference alleles observed in the sample
 # - e is the error probability (assumed the same for all samples)
 # - g is the genotype (0,1,2) -- ploidy fixed at 2
-#
 
 # %%
 import numpy as np
 from scipy.special import binom
+import matplotlib.pyplot as plt
 
 def p(r,N,g,e):
     if g==0:
@@ -97,17 +127,28 @@ def p(r,N,g,e):
     if g==2:
         return binom(N,r)*(1-e)**r*e**(N-r)
 
-def gmax(r,N,e,psi):
-    return np.argmax([p(r,N,g,e)*binom(2,g)*(psi**g*(1-psi)**(2-g)) for g in [0,1,2]])
-
-def psinew(psi):
-    return np.sum([gmax(r,10,.2,psi) for r in D])/2/len(D)
-
 def L(r,N,g,e,psi):
+    '''
+    r - observed number of reference alleles in the sample
+    N - depth
+    g - genotype
+    e - error rate (asumed the same for all reads)
+    psi - reference allele frequency
+    
+    Returns: P((r,N)|g, \psi)
+    '''
     return p(r,N,g,e)*binom(2,g)*(psi**g*(1-psi)**(2-g))
 
 def mpsinew1(r,N,e,psi):
-    return np.sum([g*L(r,N,g,e,psi) for g in [0,1,2]])/2/np.sum([L(r,N,g,e,psi) for g in [0,1,2]])
+    '''
+    r - observed number of reference alleles
+    N - depth
+    e - error rate
+    psi - reference allele frequency
+    
+    Returns: Expected genotype E(g|d,psi)
+    '''
+    return np.sum([g*L(r,N,g,e,psi) for g in [0,1,2]])/np.sum([L(r,N,g,e,psi) for g in [0,1,2]])
 
 
 def EM(N,e,psi0,D,iters):
@@ -117,15 +158,38 @@ def EM(N,e,psi0,D,iters):
     psi0 - initial guess for allele frequency in the population
     D - the data (a list of integers between 0 and N)
     iters - the number of iterations
+    
+    Returns: list of iters new estimates for psi
     '''
     psi=psi0
+    ans = []
     for i in range(iters):
         S=[mpsinew1(r,N,e,psi) for r in D]
-        psi=np.sum(S)/len(D)
-        print(psi)
+        psi=np.sum(S)/2/len(D)
+        ans.append(psi)
+    return ans
+        
+N=20
+e=.1
+psi0=.5
+D=[15,18,13,12,17,15,8,16,19,16]
+L=EM(N,e,psi0,D,20)
+plt.plot(range(len(L)),L)
+
+# %% [markdown]
+# ## Bayesian perspective
+#
+# From a Bayesian point of view, we have a hierarchical model where we can pick:
+# - a uniform prior on $\psi$ (for example) 
+# - the genotype is distributed as $\mathrm{binomial}(2,\psi)$
+# - given the genotype, and assuming constant depth $N$ and constant error rate $\epsilon$, the number $r$ of reference alleles is distributed as 
+#     - $\mathrm{binomial}(N,1-\epsilon)$ if $g=2$
+#     - $\mathrm{binomial}(N,1/2)$ if $g=1$
+#     - $\mathrm{binomial}(N,\epsilon)$ if $g=0$.
+#
+#
+
 
 # %%
-help(EM)
 
-# %%
 
