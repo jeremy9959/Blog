@@ -172,9 +172,10 @@ def EM(N,e,psi0,D,iters):
 N=20
 e=.1
 psi0=.5
-D=[15,18,13,12,17,15,8,16,19,16]
+D=[13,15,12,13,17]
 L=EM(N,e,psi0,D,20)
-plt.plot(range(len(L)),L)
+a=plt.plot(range(len(L)),L)
+t=plt.title('Convergence of EM to maximum likelihood estimate')
 
 # %% [markdown]
 # ## Bayesian perspective
@@ -187,8 +188,68 @@ plt.plot(range(len(L)),L)
 #     - $\mathrm{binomial}(N,1/2)$ if $g=1$
 #     - $\mathrm{binomial}(N,\epsilon)$ if $g=0$.
 #
+# We can cast this into the STAN language and use its NUTS sampler to get a distribution for $\psi$.
 #
 
+
+# %%
+import pystan
+
+genotype_code = """
+data {
+    int<lower=0> N ; // sequencing depth
+    real e ; //error probability
+    int<lower=0> S ; // number of samples
+    int r[S]; // number of reference alleles in each sample
+}
+parameters {
+    real psi;  // reference allele frequency
+
+}
+model { 
+    real a ; 
+
+    for (i in 1:S){
+     a=0 ; 
+     for (j in 0:2) {
+         a += exp(binomial_lpmf(r[i] | N, .5*((2-j)*e + j*(1-e)))+binomial_lpmf(j | 2,psi)) ; // sum over the genotypes
+     }
+     target += log(a) ; // sum over the samples to get likelihood of the data
+    }
+}
+"""
+
+sm=pystan.StanModel(model_code=genotype_code)
+
+
+# %% [markdown]
+# We make some sample data assuming that the reference allele frequency is .7 and there's some variation around the expected number.
+
+# %%
+from scipy.stats import binom, randint
+def r(i):
+    if i==0:
+        return randint(0,2).rvs(1)[0]
+    if i==1:
+        return randint(-1,2).rvs(1)[0]
+    if i==2:
+        return randint(-1,1).rvs(1)[0]
+X = binom(2,.7).rvs(1000)
+Y = 10*X+np.array([r(X[i]) for i in range(1000)])
+genotype_data={'N':20,'e':.2,'S':1000, 'r':Y}
+genotype_fit = sm.sampling(data=genotype_data,iter=10000,chains=4)
+genotype_fit
+
+# %%
+fig=genotype_fit.plot()
+
+# %%
+genotype_data={'N':20,'e':.4,'S':1000, 'r':Y}
+genotype_fit = sm.sampling(data=genotype_data,iter=10000,chains=4)
+genotype_fit
+
+# %%
+fig=genotype_fit.plot()
 
 # %%
 

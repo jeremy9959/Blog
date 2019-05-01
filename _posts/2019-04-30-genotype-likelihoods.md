@@ -162,7 +162,7 @@ t=plt.title('Convergence of EM to maximum likelihood estimate')
 ```
 
 
-![png](/assets/images/output_5_0.png)
+![png](/assets/images/20190430_output_5_0.png)
 
 
 ## Bayesian perspective
@@ -255,7 +255,7 @@ fig=genotype_fit.plot()
 
 
 
-![png](/assets/images/output_10_1.png)
+![png](/assets/images/20190430_output_10_1.png)
 
 
 
@@ -290,5 +290,5 @@ fig=genotype_fit.plot()
 
 
 
-![png](/assets/images/output_12_1.png)
+![png](/assets/images/20190430_output_12_1.png)
 
