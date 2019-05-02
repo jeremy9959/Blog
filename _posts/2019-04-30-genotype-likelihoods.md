@@ -1,7 +1,8 @@
 ---
 type: posts
 layout: single
-excerpt: Genotyping from sequence data
+title: Genotyping from sequence data
+excerpt: Reading H. Li, Inference using sequencing data... Bioinformatics 2011.
 tags: bioinformatics
 ---
 ## Genotyping from sequence data
