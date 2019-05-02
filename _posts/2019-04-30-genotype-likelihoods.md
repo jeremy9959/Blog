@@ -1,5 +1,10 @@
-
-## SNP calling
+---
+type: posts
+layout: single
+excerpt: Genotyping from sequence data
+tags: bioinformatics
+---
+## Genotyping from sequence data
 
 These are some notes on the (old) paper:
 
