@@ -17,9 +17,11 @@ In the [earlier discussion](https://jeremy9959.github.io/genotype-likelihoods) w
 Now we consider the problem of estimating the genotype frequencies independent of the HWE hypothesis.  Combining the two results then gives us a likelihood ratio test for HWE.
 
 We recall the computation from the [earlier discussion](https://jeremy9959.github.io/genotype-likelihoods) which yielded the formula
-$$
-\mathcal{L}(g) = P(\hbox{$l$ reference in $N$ reads}|g) = \frac{1}{2^{N}}\prod_{j=1}^{l}\left((m-g)\epsilon_{j}+g(1-\epsilon_{j})\right)\prod_{j=l+1}^{N}\left((m-g)(1-\epsilon_{j})+g\epsilon_{j})\right)
-$$
+\begin{eqnarray}
+\mathcal{L}(g) & = & P(\hbox{$l$ reference in $N$ reads}|g) \cr
+&=& \frac{1}{2^{N}}\prod_{j=1}^{l}\left((m-g)\epsilon_{j}+g(1-\epsilon_{j})\right)\prod_{j=l+1}^{N}\left((m-g)(1-\epsilon_{j})+g\epsilon_{j})\right) \cr
+\end{eqnarray}
+
 
 where $N$ is the depth of the sequencing, $\epsilon_{j}$ is the error probability of the $j^{th}$ read, and we assume ploidy = 2.
 
