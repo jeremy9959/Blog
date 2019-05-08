@@ -1,5 +1,11 @@
-
-## SNP calling
+---
+type: posts
+layout: single
+title: Genotyping from sequence data
+excerpt: Reading H. Li, Inference using sequencing data... Bioinformatics 2011.
+tags: bioinformatics
+---
+## Genotyping from sequence data
 
 These are some notes on the (old) paper:
 
@@ -257,7 +263,7 @@ fig=genotype_fit.plot()
 
 ![png](/assets/images/20190430_output_10_1.png)
 
-
+Now we use the same data, but with a higher error probability.  The effect seems to be to shift the distribution of $\psi$ to the right. 
 
 ```python
 genotype_data={'N':20,'e':.4,'S':1000, 'r':Y}
