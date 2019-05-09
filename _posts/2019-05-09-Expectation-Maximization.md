@@ -1,4 +1,10 @@
-
+---
+layout: single
+type: post
+title: Expectation Maximization
+excerpt: Proof of the EM algorithm 
+tags: math bioinformatics
+---
 ## Expectation Maximization
 
 ### Introduction
