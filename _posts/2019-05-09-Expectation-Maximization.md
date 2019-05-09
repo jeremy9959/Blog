@@ -106,9 +106,15 @@ $$
 \sum_{i=1}^{N} \sum_{\alpha} Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta) >
 \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta_0)
 $$
+
 then
+
 $$
-\sum_{i=1}^{N} \sum_{\alpha} Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta)- \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log Q^{(i)}_\alpha(\theta) > \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta_0) - \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log Q^{(i)}_\alpha(\theta_0)=\ell(\theta_0)
+\sum_{i=1}^{N} \sum_{\alpha} Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta)- \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log Q^{(i)}_\alpha(\theta)
+$$
+is greater than
+$$
+ \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta_0) - \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log Q^{(i)}_\alpha(\theta_0)=\ell(\theta_0)
 $$
 
 The conclusion of this computation is that, to find $\theta$ with $\ell(\theta)>\ell(\theta_0)$, it suffices to find the value of $\theta$ that maximizes the function
@@ -136,33 +142,49 @@ Let's make an initial guess $p_0$ and $q_0$ for the frequencies.
 
 We can observe the number $D$ of phenotypes containing at least $1$ dominant allele, and $R$ the number of homozygous recessive individuals.  There are three genotypes (these are the values of $z$).   We have $P(x=D,z=AA)=p^2$, $P(x=D,z=Aa)=2pq$, and $P(x=R,z=aa)=1$.  The other possibilities for $P(x,z)$ are zero.  
 
-Now $P(z=AA|x=D,p_0,q_0)=p_0^2/(p_0^2+2p_0q_0)$, $P(z=Aa|x=D,p_0,q_0)=2p_0q_0/(p_0^2+2p_0q_0)$, and
-$P(z=aa|x=R)=1$.  
+Now 
+$$P(z=AA|x=D,p_0,q_0)=p_0^2/(p_0^2+2p_0q_0)$$
+
+$$P(z=Aa|x=D,p_0,q_0)=2p_0q_0/(p_0^2+2p_0q_0)$$
+
+and
+$$P(z=aa|x=R)=1.$$
 
 We observe $N_D$ dominant phenotypes and $N_R$ recessive ones.  Then our $\Theta$ function is
+
 $$
 \Theta=\frac{p_0^2N_D}{p_0^2+2p_0q_0}\log(p^2)+\frac{2p_0q_0N_D}{p_0^2+2p_0q_0}\log(2pq)+N_R\log(q^2).
 $$
+
 or
+
 $$
 \Theta = (\frac{2p_0^2N_D+2p_0q_0N_D}{p_0^2+2p_0q_0})\log(p)+(\frac{2p_0q_0N_D}{p_0^2+2p_0q_0}+2N_R)\log(q)+C
 $$
+
 where $C$ is a constant.
 
 Since $p+q=1$ it's easy to see that the maximum likelihood estimates for $p$ and $q$ are 
+
 $$
 p=\frac{1}{1+q_0}\frac{N_D}{N_D+N_R}
 $$
+
 and
+
 $$
 q=\frac{(q_0/(1+q_0))N_D+N_R}{N_D+N_R}
 $$
+
 so iterating the formula
+
 $$
 q'=\frac{(q/(1+q))N_D+N_R}{N_D+N_R}
 $$
+
 leads to the maximum likelihood estimate for $q$.  Of course, looking at fixed points we see that
 this is just the formula
+
 $$
 q_{\mathrm{max}}=\sqrt{R/(R+D)}
 $$
