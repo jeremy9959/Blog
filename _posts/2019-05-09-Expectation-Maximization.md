@@ -112,12 +112,15 @@ then
 $$
 \sum_{i=1}^{N} \sum_{\alpha} Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta)- \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log Q^{(i)}_\alpha(\theta)
 $$
+
 is greater than
+
 $$
  \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log P(x_i,z=\alpha|\theta_0) - \sum_{i=1}^{N}\sum_{\alpha}Q^{(i)}_\alpha(\theta_0)\log Q^{(i)}_\alpha(\theta_0)=\ell(\theta_0)
 $$
 
 The conclusion of this computation is that, to find $\theta$ with $\ell(\theta)>\ell(\theta_0)$, it suffices to find the value of $\theta$ that maximizes the function
+
 $$
 \Theta(\theta,\theta_0)=\sum_{i}\sum_{\alpha} Q_{\alpha}^{(i)}(\theta_0)\log P(x_i,z=\alpha|\theta)
 =\sum_{i}\sum_{\alpha} P(z=\alpha|x_i,\theta_0)\log P(x_i,z=\alpha|\theta)
