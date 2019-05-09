@@ -59,18 +59,29 @@ which says that the geometric mean is less than the arithmetic mean, so in some 
 
 ### Applying Jensen's Inequality
 
-  We take advantage of Jensen's inequality as follows.  Suppose we put a probability distribution on the $z$,  so that
-we have, for each value $\alpha$ of $z$, and each $i$, a probability $Q^{(i)}_{\alpha}=Q(z=\alpha)$ with $\sum_{\alpha} Q^{(i)}_{\alpha}=1$.  Trivially, we have
+ We take advantage of Jensen's inequality as follows.  Suppose we put a probability distribution on the $z$,  so that
+we have, for each value $\alpha$ of $z$, and each $i$, a probability 
+
+$$Q^{(i)}_{\alpha}=Q(z=\alpha)$$ 
+
+with $\sum_{\alpha} Q^{(i)}_{\alpha}=1.$
+
+Trivially, we have
+
 $$
 \ell(\theta) = \sum_{i=1}^{N}\log\sum_{\alpha}Q^{(i)}_{\alpha}\frac{P(x_{i},z=\alpha|\theta)}{Q^{(i)}_{\alpha}}
 $$
+
 Now viewing $P(x_i,z=\alpha|\theta_0)$ as a function of $\alpha$ (for a given $x_i$), the inner sum is 
+
 $$
 \sum_{\alpha}Q^{(i)}_{\alpha}\frac{P(x_i,z=\alpha|\theta)}{Q^{(i)}_{\alpha}}=E_{Q^{(i)}}[\frac{P(x_i,z=\alpha|\theta)}{Q^{(i)}_\alpha}]
 $$
+
 where the expectation is taken over the probability distribution $Q$. 
 
 Using Jensen's inequality, we have
+
 $$
 \log E_{Q^{(i)}}[\frac{P(x_i,z=\alpha|\theta)}{Q^{(i)}_\alpha}]\ge \sum_{\alpha} Q^{(i)}_{\alpha}\log\frac{P(x_i,z=\alpha|\theta)}{Q^{(i)}_\alpha}
 $$
