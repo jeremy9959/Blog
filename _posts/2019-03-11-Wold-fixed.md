@@ -1,0 +1,127 @@
+---
+type: posts
+layout: single
+title: Wold's Decomposition
+excerpt: Notes on Wold's decomposition
+tags: math
+---
+## Wold's decomposition
+
+Wold's decomposition is a general structure theorem for (wide-sense) stationary stochastic processes.  Although widely referenced it was hard to track down a complete proof, and I had to overcome a lot of misconceptions to understand the result.  Here are the key ideas.
+
+### Hilbert space facts
+
+First, Wold's theorem is ultimately a consequence of some basic results about orthonormal bases in Hilbert spaces.
+
+Suppose $\{X_{t}\}$ is a discrete time (wide sense) stationary stochastic process with mean zero and variance $\sigma^2$.
+
+The random variables $X_t$ (on an underlying probability space $\Omega$) belong to  $L^2(\Omega)$, which is a real Hilbert space with
+inner product $<X,Y>=E(XY)$. Resnick's *A Probability Path*, Theorem 6.6.2, proves that this does in fact
+give a Hilbert space  and more generally shows the completeness of the $L^p$ space coming from the norm $E(|X|^p)^{1/p}$.
+
+The crucial ingredient in Wold's theorem is the fact that the conditional expectation gives the projection map in this Hilbert space.
+Given a set $X_i$ of random variables, their Hilbert span $M$ is the closure of the linear subspace they generate.  The conditional expectation
+$E(X|\{X_i\})$ is the projection of $X$ into $M$.  In Hilbert space terms this means that
+
+$$
+E(X|\{X_i\})=\mathrm{argmin}_{y\in M} E((X-y)^2)
+$$
+
+and (equivalently)
+
+$$X-E(X| \{X_{i}\} )$$
+
+is orthogonal to all of the $X_i$:
+
+$$
+E(X_i(X-E(X|\{X_i\}))=E(X_i X)-E(E(X_i X|\{X_i\}))=0.
+$$
+
+In fact, this second inequality amounts to a proof of the fact that conditional expectation is prediction, because general
+Hilbert space theory says that $x_0$ is the projection of $x$ into $M$ if and only if $x-x_0$ is perpendicular to $M$
+(See *Probability and Measure Theory* by Ash and Doleans-Dade, Theorem 3.2.11.  Section 3.2 of this book gives a quick trip through the key Hilbert space results.)
+
+**Lemma:** Returning to the time series/stochastic process situation, let
+
+$$H_k^{(n)}=E(X_n|X_{n-1},\ldots X_{n-k}).$$
+
+The
+sequence $H_k^{(n)}$ converges to $H^{(n)}=E(X_n|X_{n-1},\ldots )$ as $k\to\infty$.
+
+This is a consequence of the proof of the general result that if $U=\\{u_j\\}_{j\in I}$ is an orthonormal set, and $v$ is any
+vector, then the projection $\overline{v}$ of $v$ into the Hilbert span of $U$ is $\sum E(vu_j)u_j$.  (See Ash and Doleans-Dade, Theorem 3.2.13 and Corollary 3.2.14.)
+
+The complication is that we need to understand why this infinite sum converges.  The point is that any vector can be approximated arbitrarily closely by a finite linear combination of the $u_j$.  Therefore, for a sequence of $\epsilon\to 0$,  we can find
+a sequence of $N_\epsilon\to\infty$ so that $||\overline{v}-\sum_{j<N_\epsilon}E(vu_{j})u_j||^2<\epsilon.$  But while the existence of the $N_\epsilon$ is guaranteed, we don't *a priori* know about their growth rate.
+
+**Misconception #1:** If $x_n$ is the projection of $X_n$ into the span of $X_{n-1},\ldots$, I thought that $H_k^{(n)}$ should get closer to $x_n$ with each increase in $k$.  But that's not true!  You may need to add a whole bunch of $k$ before you get closer to the limit.
+
+**Misconception #2:** When computing $E(X|Y,Z)$,
+if $X$ and $Z$ are independent I thought that $E(X|Y,Z)$
+wouldn't depend on $Z$.  But this is completely false.  Here's a very simple example in
+3 dimensions.  Let $X=(1,1,0)$, $Y=(1,0,1)$ and $Z=(0,0,1)$.  Then $X$ and $Z$ are orthogonal.  The projection of $X$ into the span of
+just $Y$ is $(1/2,0,1/2)$.  The projection of $X$ into the span of $Y$ and $Z$
+does not lie in the span of $Y$.  The key point is that although $X$ and $Z$ are orthogonal, $Y$ and $Z$ aren't.
+
+### Deterministic time series
+
+The projections $H^{(n)}=\lim_{k\to\infty}H_k^{(n)}$ give the best estimate (in the $L^2$ sense) for $X_n$ that one can derive from knowledge of the entire previous history of the time series.
+
+Typically the "unpredictable part" $X_{n}-H^{(n)}$ is a random variable.   But it *could happen* that it's not actually random -- it could be a constant which would have to be the mean of the process.  Such a sequence $X_n$ is called a *deterministic* time series; it's random, but predictable.
+
+A classic example of such a deterministic series is the following.  Let $A$ and $B$ be independent variables that each take the values $\pm 1/2$ with equal probability.  Consider the function
+
+$$
+X(t)=A\cos \pi t/2 + B\cos\pi t/2
+$$
+
+The sequence $(,\ldots, X(0), X(1), X(2), \ldots)$
+is a wide-sense stationary time series which lies in a four dimensional space.  Consequently if you know four values of the sequence you can reconstruct it in its entirety.
+
+### Wold's decomposition
+
+Let $\epsilon_n = X_n - H^{(n)}$, which is the part of $X_n$ not explainable by (orthogonal to) all of the earlier values.
+
+The $\epsilon_n$ form an orthogonal set, because, if $i>j$, then $\epsilon_j$ lies in the span of $X_j, X_{j-1}, \ldots$ and $\epsilon_i$ is orthogonal to that subspace.  Let $\sigma^2=E(\epsilon_n^2)$. By the Hilbert space results
+quoted above, we have
+
+$$
+X_n = \sum_{i=0}^{\infty} \frac{E(X_{n-i}\epsilon_{n-i})}{\sigma^2}\epsilon_{n-i}+v_n
+$$
+
+where $v_n$ is orthogonal to all of $X_n,X_{n-1},\ldots$.  Hilbert space theory tells us that the coefficients $E(X_{n-i}\epsilon_{n-i})/\sigma^2$
+are $l^2$-summable. (See Theorem 3.2.13, part f, of Ash and Doleans-Dade quoted above.)
+
+The final piece of Wold's decomposition is to understand the leftover pieces $v_n, v_{n-1},\ldots$.  Without any details, the point is that
+since $v_n$ is orthogonal to $\epsilon_n$, it belongs to the subspace spanned by the $X_{n-i}$ for $i\ge 1$.  This means that it is deterministic -- it can be predicted exactly from past data.
+
+**Theorem** (Wold's Decomposition) If $X_n$ is a regular stationary stochastic process with mean zero, it can be written
+
+$$
+X_n=\sum_{s=0}^{\infty} \gamma_s \epsilon_{n-s} + v_{n}
+$$
+
+where
+
+- $\sum \gamma_{s}^2<\infty$,
+- $\gamma_0=1$
+- $u_s$ and $v_s$ have mean zero,
+- $E(\epsilon_n)=\sigma^2$,
+- The $\epsilon_i$ form an orthogonal set,
+- The $v_s$ are deterministic,
+- The $\gamma_s$ and the $v_s$ are unique.
+
+*Remark* A regular stochastic process is one in which $\epsilon_0$ has non-zero variance.
+
+### References
+
+- Ash and Doleans-Dade, *Probability and Measure Theory*, Second Edition, Academic Press, 2000, esp. Chapter 3.
+- Anderson, *The Statistical Analysis of Time Series*, Wiley, 1970, especially [pages 417-421](/assets/docs/Anderson-Wold.pdf).
+- Resnick, *A Probability Path*, Birkhauser, 2005.
+
+
+
+
+
+
+
