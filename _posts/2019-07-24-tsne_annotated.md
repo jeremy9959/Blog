@@ -69,7 +69,7 @@ l=pylab.axvline(1/6.0,color='red')
 ```
 
 
-![png](assets/images/tsne_annotated_1.png)
+![png](/assets/images/tsne_annotated_1.png)
 
 
 ### Computing pairwise distances
@@ -264,7 +264,7 @@ is best thought of as an $n\times 2$ matrix where the columns correspond to the 
 
 The choice of the t-distribution on the embedded points is a key point, and the paper has the following to say about it (page 2585):
 
-<img src="assets/images/tsne_shot.png" width="70%">
+<img src="/assets/images/tsne_shot.png" width="70%">
 
 In appendix A of the paper, the authors work out the gradient of the KL divergence (an annoying but straightforward exercise in calculus).
 The result is that (remembering that $ \partial K/\partial y_{i} $ is a two-dimensional vector) 
@@ -444,6 +444,6 @@ t=ax.set_ylim([-150,150])
 ```
 
 
-![png](assets/images/tsne_annotated_0.png)
+![png](/assets/images/tsne_annotated_0.png)
 
 
