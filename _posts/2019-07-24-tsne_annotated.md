@@ -69,7 +69,7 @@ l=pylab.axvline(1/6.0,color='red')
 ```
 
 
-![png](/assets/images/tsne_annotated_1.png)
+![png]({{ site.url }}/assets/images/tsne_annotated_1.png)
 
 
 ### Computing pairwise distances
