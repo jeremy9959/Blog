@@ -1,5 +1,5 @@
 ---
-layout:single
+layout: single
 title: Random Walks on Graphs and tSNE
 excerpt: a quick look at how tSNE uses random walks on graphs to compute affinities
 ---
