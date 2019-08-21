@@ -42,10 +42,15 @@ Thus we have three cases to consider:
 
 If it weren't for case 3, the algorithm to find the closest point would be clearly $O(\log n)$.  
 
-There are many implementations of this algorithm available on github.  Here is mine:
+There are many implementations of this algorithm available on github.  [My implementation is available as a gist here.](https://gist.github.com/jeremy9959/7c8e413de311c1f1bbc305ad63082187).
 
-<script src="https://gist.github.com/jeremy9959/7c8e413de311c1f1bbc305ad63082187.js"></script>
+Experiments comparing my implementation with the the method of using the numpy sort algorithm to pick out the closest points
+shows that my implementation does better on large sets of points (not counting the time to build the tree).  
+On 100000 points, the sort-based algorithm is about 20 times faster than the vptree implementation.  On 10000000 points,
+the vptree is 40 times faster.
 
+The vptree time is more variable than the sort-based time, because the speed depends on how often you can take only one of the two branches in the tree,
+and that depends on the distribution of the points.
 
 
 
