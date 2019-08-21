@@ -49,7 +49,7 @@ shows that my implementation does better on large sets of points (not counting t
 On 100000 points, the sort-based algorithm is about 20 times faster than the vptree implementation.  On 10000000 points,
 the vptree is 40 times faster.
 
-<img src="{{ /assets/images/vptree_comparison.png" | relative_url }}">
+<img src="{{ "/assets/images/vptree_comparison.png" | relative_url }}">
 
 
 The vptree time is more variable than the sort-based time, because the speed depends on how often you can take only one of the two branches in the tree,
