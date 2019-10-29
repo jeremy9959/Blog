@@ -1,3 +1,11 @@
+---
+title: Gaussian Mixture in Stan
+type: posts
+layout: single
+excerpt: Fitting a gaussian mixture in Stan
+tags: clustering
+---
+
 ## Gaussian Mixture Model via Stan (MCMC)
 
 
