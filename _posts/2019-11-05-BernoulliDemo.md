@@ -1,5 +1,5 @@
 ---
-type: post
+type: posts
 layout: single
 title: Bernoulli Mixture 
 excerpt: Bernoulli Mixture following Bishop, Section 9.3.3
