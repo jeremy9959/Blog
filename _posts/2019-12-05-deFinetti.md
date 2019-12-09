@@ -56,7 +56,7 @@ is uniquely determined by the values $P(n,n)$.
 
 $$
 \begin{array}
-P(X_1=a_1,\ldots,X_n=a_n)& = & P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=0) \cr
+ P(X_1=a_1,\ldots,X_n=a_n)& = & P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=0) \cr
 & & +P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=1).
 \end{array}
 $$
@@ -75,6 +75,10 @@ $$
 
 From this relation, if we know $P(k,n)$ for all $n<N$ and $P(N,N)$, we can recursively compute
 $P(k,N)$ for $0\le k\le N-1$ to obtain all $P(k,N)$.
+
+**Remark:** You can't specify the $P(k,k)$ at will; they have to yield a probability measure where
+all the $P(k,n)$ are in $[0,1]$ and this imposes complicated and hidden conditions.
+
 
 Notice also that the random variable
 
@@ -143,7 +147,7 @@ $$
 
 Finally, the product $X_1 X_2\cdots X_k$ is zero unless all of the $X_i$ are $1$, and thus this expectation is exactly $P(k,k)$.
 
-This proof tells us that the De Finetti measure $\mu$ is characterized by the $P(k,k)$:
+This proof, and the general results above, tell us that the De Finetti measure $\mu$ is characterized by the $P(k,k)$:
 
 $$
 \int y^{k} d\mu = P(k,k).
@@ -157,13 +161,13 @@ $$
 $$
 
 where the binomial coefficient appears since we need to consider all possible ways of getting $k$ ones in $m$ tries,
-the identity
+we have the identity
 
 $$
 \int y^{k}(1-y)^{m+1-k}d\mu = \int y^{k}(1-y)^{m-k} d\mu - \int y^{k+1}(1-y)^{m-k}d\mu
 $$
 
-so probabilities determined by this limiting $\mu$ satisfy the same recurrence as the $P(k,m)$ and agree on $P(k,k)$
+and so the probabilities determined by this limiting $\mu$ satisfy the same recurrence as the $P(k,m)$ and agree on $P(k,k)$
 and are therefore the same.
 
 
