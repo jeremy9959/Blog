@@ -56,8 +56,10 @@ is uniquely determined by the values $P(n,n)$.
 
 $$
 \begin{array}
+
  P(X_1=a_1,\ldots,X_n=a_n)& = & P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=0) \cr
 & & +P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=1).
+
 \end{array}
 $$
 
