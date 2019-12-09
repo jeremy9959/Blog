@@ -47,7 +47,7 @@ P(X_{i_1}=a_1,X_{i_2}=a_2,\ldots,X_{i_m}=a_m) = \frac{P(k,m)}{\binom{m}{k}}.
 $$
 
 since exchangeability means that the location of the $k$ $1$'s among the $m$ slots is uniformly distributed among the
-$\binom{m}{k}$.
+$\binom{m}{k}$ possible sites.
 
 **Lemma:** The probability measure $\mu$ defined by the function $P(k,m)\to \mathbb{R}$ described above
 is uniquely determined by the values $P(n,n)$.
@@ -55,10 +55,14 @@ is uniquely determined by the values $P(n,n)$.
 **Proof:** The fact that the $P(k,m)$ determine a measure on the full product space means that
 
 $$
-P(X_1=a_1,\ldots,X_n=a_n) = P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=0)+P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=1).
+\begin{array}
+P(X_1=a_1,\ldots,X_n=a_n)& = & P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=0) \cr
+& & +P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=1).
+\end{array}
 $$
 
 Therefore
+
 $$
 \frac{1}{\binom{n}{k}}P(k,n)=\frac{1}{\binom{n+1}{k}}P(k,n+1) + \frac{1}{\binom{n+1}{k+1}}P(k+1,n+1).
 $$
@@ -123,7 +127,7 @@ $$
 $$
 Since the individual random variables $X_i$ are idempotent, and because of exchangeability, to work this out  we need to count
 how many times each monomial equivalent to $X_1 X_2\cdots X_r$ for $1\le r\le k$ occurs in the sum. For case where all
-$X_i$ are distinct, we have the number of ways to choose a subset of size $k$ from $N$ elements, or $\binomial{N}{k}$; and then
+$X_i$ are distinct, we have the number of ways to choose a subset of size $k$ from $N$ elements, or $\binom{N}{k}$; and then
 each subset contributes $k!$ terms.  Thus the number of terms of this form grows with leading term $N^{k}$.  
 
 For all of the other situations, we need to count subsets of size $k$ chosen from $N$ elements with *at least one repetition.*
@@ -132,25 +136,33 @@ of $N^{k-1}$; and then we make a list of length $k$ of choices from this set wit
 $(k-1)^kN^{k-1}$ choices.  (In fact this is a massive overcount but we only care about the leading order of $N$).  
 
 It follows that, as $N\to\infty$, only the terms with $k$ distinct $X_i$ survive; and in the limit we obtain
+
 $$
-\lim_{N\to\infty} E((\frac{1}{N}sum_{i=1}^{N} X_i)^{k}) = E(X_1 X_2\cdots X_k).
+\lim_{N\to\infty} E((\frac{1}{N}\sum_{i=1}^{N} X_i)^{k}) = E(X_1 X_2\cdots X_k).
 $$
+
 Finally, the product $X_1 X_2\cdots X_k$ is zero unless all of the $X_i$ are $1$, and thus this expectation is exactly $P(k,k)$.
 
 This proof tells us that the De Finetti measure $\mu$ is characterized by the $P(k,k)$:
+
 $$
 \int y^{k} d\mu = P(k,k).
 $$
+
 To complete the proof, 
 observe that if we set
+
 $$
  \frac{1}{\binom{m}{k}}P(k,m) = \int y^{k}(1-y)^{m-k} d\mu ,
 $$
+
 where the binomial coefficient appears since we need to consider all possible ways of getting $k$ ones in $m$ tries,
 the identity
+
 $$
 \int y^{k}(1-y)^{m+1-k}d\mu = \int y^{k}(1-y)^{m-k} d\mu - \int y^{k+1}(1-y)^{m-k}d\mu
 $$
+
 so probabilities determined by this limiting $\mu$ satisfy the same recurrence as the $P(k,m)$ and agree on $P(k,k)$
 and are therefore the same.
 
