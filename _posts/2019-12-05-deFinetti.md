@@ -17,10 +17,12 @@ For the first part of this post we follow the lovely paper [An elementary proof 
 that form an "exchangeable sequence,", meaning that $P(X_1=a_1,X_2=a_2,\ldots, X_N=a_N)$ is invariant under permutation
 of the $X_i$ for any $N$.  Then there exists a probability measure $\mu$ on $[0,1]$ such that, for any $N$ and any sequence
 of zeros and ones $a_1,\ldots, a_N$, we have
+
 $$
 P(X_1=a_1,\ldots, X_N=a_N)=\int y^e(1-y)^s d\mu(y)
 $$
-where $e$ is the number of $a_1$ equal to $1$ and $s$ is the number of $y$ equal to zero (so $e+s=N$).
+
+where $e$ is the number of $a$'s equal to $1$ and $s$ is the number of $a$'s equal to zero (so $e+s=N$).
 
 This result is usually interpreted by saying that the infinite exchangeable sequence is a mixture of iid Bernoulli random
 variables with mixture measure $\mu$ -- so that to sample from the distribution 
@@ -34,13 +36,16 @@ of a long story on the relationship between finite and infinite sets of exchange
 
 To get a sense of how this all works, notice first of all that the "exchangeability condition" means that all of the
 information in the sequence $S$ can be encoded in numbers $P(k,m)$ for $m\in\mathbb{N}$ and $0\le k\le m$ where
-$$
-P(k,m) = \hbox{\rm the probability of getting $k$ ones from a choice of $m$ variables $X_i$ from $S$}.
-$$
+
+$P(k,m)$ is the probability of getting $k$ ones from a choice of $m$ variables $X_i$ from $S$.
+
+
 In fact, suppose we have a collection $(a_1,\ldots, a_m)$ of zeros and ones, and $k=\sum a_i$ is the number of ones.  Then
+
 $$
 P(X_{i_1}=a_1,X_{i_2}=a_2,\ldots,X_{i_m}=a_m) = \frac{P(k,m)}{\binom{m}{k}}.
 $$
+
 since exchangeability means that the location of the $k$ $1$'s among the $m$ slots is uniformly distributed among the
 $\binom{m}{k}$.
 
@@ -48,26 +53,34 @@ $\binom{m}{k}$.
 is uniquely determined by the values $P(n,n)$.
 
 **Proof:** The fact that the $P(k,m)$ determine a measure on the full product space means that
+
 $$
 P(X_1=a_1,\ldots,X_n=a_n) = P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=0)+P(X_1=a_1,\ldots,X_n=a_n,X_{n+1}=1).
 $$
+
 Therefore
 $$
-\frac{1}{\binom{n}{k}}P(k,n)=\frac{1}{\binom{n+1}{k})P(k,n+1) + \frac{1}{\binom{n+1}{k+1}}P(k+1,n+1).
+\frac{1}{\binom{n}{k}}P(k,n)=\frac{1}{\binom{n+1}{k}}P(k,n+1) + \frac{1}{\binom{n+1}{k+1}}P(k+1,n+1).
 $$
+
 Rearranging and simplifying we obtain the relation
+
 $$
 P(k,n+1) = \frac{n+1}{n+1-k}P(k,n) - \frac{k+1}{n+1-k}P(k+1,n+1).
 $$
+
 From this relation, if we know $P(k,n)$ for all $n<N$ and $P(N,N)$, we can recursively compute
 $P(k,N)$ for $0\le k\le N-1$ to obtain all $P(k,N)$.
 
 Notice also that the random variable
+
 $$
 S_N = \frac{1}{N}\sum_{i=1}^{N} X_i
 $$
+
 counts the proportion of $1$'s among the first $N$ of the $X_i$, so its distribution is governed by the $P(k,m)$,
 so that for $0\le k\le N$ we have $S_N$ supported on the fractions $k/N$ and
+
 $$
 P(S_N=k/N) = P(k,N).
 $$
